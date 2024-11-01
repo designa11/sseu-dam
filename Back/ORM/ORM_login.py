@@ -32,4 +32,3 @@ class pr_tb_SensingAlerts(Base):
     UserID = Column(String(50), nullable=True)
     AlertType = Column(String(20), nullable=True)
     ReceivedYN = Column(Boolean, nullable=True)
-    

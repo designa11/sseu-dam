@@ -34,7 +34,7 @@ class pr_schema_SensingAlert(BaseModel):
     ReceivedYN: Optional[bool] = True
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class forgot_Password(BaseModel):
     UserID : str

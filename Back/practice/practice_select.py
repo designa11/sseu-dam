@@ -1,12 +1,12 @@
 import DB_connect
-import ORM.ORM as ORM
+import ORM.ORM_login as ORM_login
 from sqlalchemy.ext.declarative import declarative_base
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-import schema.select_schema as select_schema
+import schema.login_schema as login_schema
 
 
-ORM.Base
+ORM_login.Base
 
 # ORM.User
 
@@ -23,9 +23,9 @@ app = FastAPI()
 def read_root():
     return {"message" : "basic"}
 
-@app.get("/select/{UserID}", response_model=select_schema.UserSchema)
+@app.get("/select/{UserID}", response_model=login_schema.UserSchema)
 def read_user(UserID : str, db : Session = Depends(get_db)):
-    db_user = db.query(ORM.User).filter(ORM.User.UserID==UserID).first() # 검색
+    db_user = db.query(ORM_login.User).filter(ORM_login.User.UserID==UserID).first() # 검색
     if db_user is None:
         return {"error" : "존재하지 않는 회원"}
     # return select_schema.UserSchema.model_validate(db_user)
